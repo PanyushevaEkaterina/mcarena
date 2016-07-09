@@ -172,7 +172,7 @@ void Game::loadHeroes()
     Kind kind;
     Element elem;
     int init;
-    int price;
+    int cost;
     
     while(xml_hero != NULL)
     {
@@ -182,9 +182,9 @@ void Game::loadHeroes()
         kind = xml_hero->Attribute("kind");
         elem = xml_hero->Attribute("elem");
         init = xml_hero->Attribute("init");
-        price = xml_hero->Attribute("price");
+        cost = xml_hero->Attribute("cost");
         
-        hero->setStats(Stats(HP(hp),Damage(dmg_min,dmg_max),Kind::kind,Element::elem,Initiative(init),Actions(),price));
+        hero->setStats(Stats(HP(hp),Damage(dmg_min,dmg_max),Kind::kind,Element::elem,Initiative(init),Actions(),cost));
         hero->setResources(*resource);
         heroes.push_back(hero);
         
