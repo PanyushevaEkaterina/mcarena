@@ -59,3 +59,4 @@ LIBS += \
     -lsfml-system\
     -lsfml-audio\
     -lsfgui
+    -ltinyxml
