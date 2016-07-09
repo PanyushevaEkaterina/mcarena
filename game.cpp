@@ -162,7 +162,7 @@ void Game::loadHeroes()
     resource->loadTexture("res/img/sprites/sonic_sprite.png");
     resource->loadImage("res/img/images/sonic_img.png");
     
-    TiXmlDocument document("Heroes.xml");
+    TiXmlDocument document("res/Heroes.xml");
     document.LoadFile(TIXML_ENCODING_UTF8);
     TiXmlElement *xml_hero = document.FirstChildElemen("hero");
     
