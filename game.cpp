@@ -160,6 +160,7 @@ void Game::loadHeroes()
     document.LoadFile(TIXML_ENCODING_UTF8);
     TiXmlElement *xml_hero = document.FirstChildElemen("hero");
     
+    string pathto_atk_snd, pathto_skl_snd, pathto_texture, pathto_image;
     int hp;
     int dmg_min,dmg_max;
     Kind kind;
@@ -170,11 +171,11 @@ void Game::loadHeroes()
     while(xml_hero != NULL)
     {
         HeroTemplate *hero = new HeroTemplate();
-        Resources *resource = new Resources();
-        resource->loadAttackSound(xml_hero->Attribute("atk_snd"));
-        resource->loadSkillSound(xml_hero->Attribute("skl_snd"));
-        resource->loadTexture(xml_hero->Attribute("texture"));
-        resource->loadImage(xml_hero->Attribute("image"));
+        Resources resource;
+        pathto_atk_snd = xml_hero->Attribute("atk_snd");
+        pathto_skl_snd = xml_hero->Attribute("skl_snd");
+        pathto_texture = xml_hero->Attribute("texture");
+        pathto_image = xml_hero->Attribute("image");
         hp = xml_hero->Attribute("hp");
         dmg_min = xml_hero->Attribute("dmg_min");
         dmg_max = xml_hero->Attribute("dmg_max");
@@ -183,8 +184,13 @@ void Game::loadHeroes()
         init = xml_hero->Attribute("init");
         cost = xml_hero->Attribute("cost");
         
+        resource.loadAttackSound(pathto_atk_snd);
+        resource.loadSkillSound(pathto_skl_snd);
+        resource.loadTexture(pathto_texture);
+        resource.loadImage(pathto_image);
+        hero->setResources(resource);
+
         hero->setStats(Stats(HP(hp),Damage(dmg_min,dmg_max),Kind::kind,Element::elem,Initiative(init),Actions(),cost));
-        hero->setResources(*resource);
         heroes.push_back(hero);
         
         xml_hero = xml_hero->NextSiblingElement("hero");    
