@@ -156,17 +156,10 @@ int Game::exec()
 
 void Game::loadHeroes()
 {
-    Resources *resource = new Resources();
-    resource->loadAttackSound("res/sfx/sonic_attack.wav");
-    resource->loadSkillSound("res/sfx/sonic_attack.wav");
-    resource->loadTexture("res/img/sprites/sonic_sprite.png");
-    resource->loadImage("res/img/images/sonic_img.png");
-    
     TiXmlDocument document("res/Heroes.xml");
     document.LoadFile(TIXML_ENCODING_UTF8);
     TiXmlElement *xml_hero = document.FirstChildElemen("hero");
     
-    HeroTemplate *hero = new HeroTemplate();
     int hp;
     int dmg_min,dmg_max;
     Kind kind;
@@ -176,6 +169,12 @@ void Game::loadHeroes()
     
     while(xml_hero != NULL)
     {
+        HeroTemplate *hero = new HeroTemplate();
+        Resources *resource = new Resources();
+        resource->loadAttackSound(xml_hero->Attribute("atk_snd"));
+        resource->loadSkillSound(xml_hero->Attribute("skl_snd"));
+        resource->loadTexture(xml_hero->Attribute("texture"));
+        resource->loadImage(xml_hero->Attribute("image"));
         hp = xml_hero->Attribute("hp");
         dmg_min = xml_hero->Attribute("dmg_min");
         dmg_max = xml_hero->Attribute("dmg_max");
