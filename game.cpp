@@ -1,5 +1,5 @@
 #include "inc/game.h"
-#include "tinyxml.h"
+#include "tinyxml/tinyxml.h"
 #include <iostream>
 
 using namespace std;
@@ -158,7 +158,7 @@ void Game::loadHeroes()
 {
     TiXmlDocument document("res/Heroes.xml");
     document.LoadFile(TIXML_ENCODING_UTF8);
-    TiXmlElement *xml_hero = document.FirstChildElemen("hero");
+    TiXmlElement *xml_hero = document.FirstChildElement("hero");
     
     string pathto_atk_snd, pathto_skl_snd, pathto_texture, pathto_image;
     int hp;
