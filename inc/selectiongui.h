@@ -109,4 +109,5 @@ public slots:
     void setHeroGroup(HeroGroup*);  // Change current group
     void setCost(/* cost */); // Change cost amount: 'curr/max'
     void showCross(HeroPosition);  // Show cross on seat  [this -> this]
+    void setChosenSignals(sfg::Table::Ptr);
 };

@@ -262,6 +262,16 @@ void SelectionGUI::setHeroVector(HeroVector *heroVector)
     }
 }
 
+void SelectionGUI::setChosenSignals(sfg::Table::Ptr heropicklist)
+{
+    int i=0;
+    for(auto it = heropicklist->GetChildren().begin(), end = heropicklist->GetChildren().end(); it != end; it++)
+    {
+        (*it)->GetSignal( sfg::Widget::OnLeftClick ).Connect(  std::bind( &SelectionGUI::heroChosen, this, i));
+        i++;
+    }
+}
+
 void SelectionGUI::heroChosen(int i)
 {
     if(i != activeHeroNumber)
